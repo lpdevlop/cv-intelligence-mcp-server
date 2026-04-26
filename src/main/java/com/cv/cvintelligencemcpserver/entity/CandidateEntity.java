@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 
 @Entity
 @Table(name = "candidate")
@@ -17,6 +16,7 @@ public class CandidateEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     private String name;
 
     private String email;
@@ -25,35 +25,28 @@ public class CandidateEntity {
 
     private String location;
 
-    private String country;
+    @Lob
+    private String skillsJson;
 
+    @Lob
+    private String experienceJson;
 
-    @ElementCollection
-    @CollectionTable(name = "candidate_skills", joinColumns = @JoinColumn(name = "candidate_id"))
-    private List<String> skills;
+    @Lob
+    private String educationJson;
 
-    @ElementCollection
-    @CollectionTable(name = "candidate_education", joinColumns = @JoinColumn(name = "candidate_id"))
-    private List<EducationEntity> education;
+    @Lob
+    private String technicalJson;
 
-    @ElementCollection
-    @CollectionTable(name = "candidate_experience", joinColumns = @JoinColumn(name = "candidate_id"))
-    private List<ExperienceEntity> experiences;
+    @Lob
+    private String refereesJson;
 
-    @ElementCollection
-    @CollectionTable(name = "candidate_referees", joinColumns = @JoinColumn(name = "candidate_id"))
-    private List<RefereesEntity> referees;
-
-    @ElementCollection
-    @CollectionTable(name = "candidate_technical", joinColumns = @JoinColumn(name = "candidate_id"))
-    private List<TechnicalEntity> technical;
-
+    @Lob
+    private String rawCvJson;
 
     private String github;
 
     private String linkedin;
 
     private String summary;
-
 
 }
